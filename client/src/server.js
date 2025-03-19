@@ -27,7 +27,7 @@ app.use(express.json());
 
 // Root route for API health check
 app.get('/', (req, res) => {
-  res.status(200).json({
+  res.status(200).json({ 
     message: 'API is running',
     version: '1.0.0'
   });
@@ -38,7 +38,7 @@ app.get('/health', async (req, res) => {
   try {
     // Check database connection
     const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
-
+    
     return res.status(200).json({
       success: true,
       message: 'API is healthy',
@@ -75,7 +75,7 @@ app.use((err, req, res, next) => {
   console.error('Stack:', err.stack);
   console.error('Request path:', req.path);
   console.error('Request body:', JSON.stringify(req.body, null, 2));
-
+  
   res.status(500).json({
     success: false,
     error: err.message || 'Something went wrong!',
